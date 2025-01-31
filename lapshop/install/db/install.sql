@@ -1,0 +1,39 @@
+CREATE TABLE IF NOT EXISTS `xyp_laptop` (
+    `ID` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `MODEL_ID` INT(11) NOT NULL,
+    `NAME` VARCHAR(255) NOT NULL,
+    `YEAR` VARCHAR(20) NOT NULL,
+	`PRICE` float NOT NULL DEFAULT 0,
+    INDEX xyp_laptop_id(ID),
+    INDEX xyp_model_id(MODEL_ID)
+);
+
+CREATE TABLE IF NOT EXISTS `xyp_model` (
+    `ID` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `NAME` VARCHAR(255) NOT NULL,
+    `CODE` VARCHAR(255) NULL,
+    `MANUFACTURER_ID` INT(11) NOT NULL,
+    INDEX xyp_model_id(ID),
+    INDEX xyp_model_code(CODE)
+);
+
+CREATE TABLE IF NOT EXISTS `xyp_manufacturer` (
+    `ID` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `NAME` VARCHAR(255) NOT NULL,
+    `CODE` VARCHAR(255) NULL,
+    INDEX xyp_manufacturer_id(ID),
+    INDEX xyp_manufacturer_code(CODE)
+);
+
+CREATE TABLE IF NOT EXISTS `xyp_option` (
+    `ID` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `NAME` VARCHAR(255) NULL,
+    `VALUE` VARCHAR(255) NULL,
+    INDEX xyp_option_id(ID)
+);
+
+CREATE TABLE IF NOT EXISTS `xyp_laptop_to_option` (
+    `LAPTOP_ID` INT(11) NOT NULL,
+    `OPTION_ID` INT(11) NOT NULL,
+    INDEX xyp_laptop_to_option(LAPTOP_ID, OPTION_ID)
+);
